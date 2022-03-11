@@ -1,0 +1,18 @@
+{
+  "user": [
+    {
+      "name": "viral sangani",
+      "email": "viral@gmail.com",
+      "contact": "9328889307",
+      "address": "spain",
+      "id": 2
+    },
+    {
+      "name": "sahil",
+      "email": "sahil@gmial.com",
+      "contact": "9048283",
+      "address": "spain",
+      "id": 3
+    }
+  ]
+}
