@@ -12,6 +12,7 @@ const userReducers = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload,
+
                 loading: false,
             };
         case types.DELETE_USER:
@@ -26,6 +27,11 @@ const userReducers = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
                 loading: false,
+            }
+        case types.GET_FULL_USER_DATA:
+            return {
+                ...state,
+                user: action.payload,
             }
             
         default:

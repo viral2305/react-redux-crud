@@ -117,6 +117,13 @@ const Home = () => {
                       >
                         <Button
                           style={{ marginRight: "5px" }}
+                          color="primary"
+                          onClick={() => navigate(`/viewUser/${user.id}`)}
+                        >
+                          View
+                        </Button>
+                        <Button
+                          style={{ marginRight: "5px" }}
                           color="secondary"
                           onClick={() => handleDelete(user.id)}
                         >

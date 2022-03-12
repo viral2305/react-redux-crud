@@ -4,7 +4,12 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {  getSingleUser, updateUser } from "../redux/actions";
+import { getSingleUser, updateUser } from "../redux/actions";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,16 +25,21 @@ const EditUser = () => {
   const { user } = useSelector((state) => state.data);
   const classes = useStyles();
   let { id } = useParams();
+  console.log("id", id);
   const [state, setState] = useState({
     name: "",
     email: "",
     contact: "",
     address: "",
+    age: "",
+    number: "",
+    birth_date: "",
+    gender: "",
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { name, email, contact, address } = state;
+  const { name, email, contact, address, age, number, birth_date, gender } = state;
 
   useEffect(() => {
     dispatch(getSingleUser(id));
@@ -49,7 +59,7 @@ const EditUser = () => {
     if (!name || !address || !email || !contact) {
       setError("please input all input field");
     } else {
-      dispatch(updateUser(state,id));
+      dispatch(updateUser(state, id));
       navigate("/");
       setError("");
     }
@@ -109,6 +119,51 @@ const EditUser = () => {
           name="address"
           onChange={handleInputChange}
         />
+        <br />
+        <TextField
+          id="standard-basic"
+          label="Age"
+          value={age || ""}
+          type="text"
+          name="age"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="standard-basic"
+          label="Mobile No."
+          value={number || ""}
+          type="number"
+          name="number"
+          onChange={handleInputChange}
+        />
+        <br />
+        <TextField
+          id="standard-basic"
+          label="Birth-Date"
+          value={birth_date || ""}
+          type="date"
+          name="birth_date"
+          onChange={handleInputChange}
+        />
+        <br />
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Gender</FormLabel>
+          <RadioGroup
+            aria-label="gender"
+            name="gender"
+            value={gender || ""}
+            onChange={handleInputChange}
+          >
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroup>
+        </FormControl>
         <br />
 
         <Button

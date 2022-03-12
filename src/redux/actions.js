@@ -21,6 +21,10 @@ const getUser = (user) => ({
     type: types.GET_SINGLE_USER,
     payload: user,
 })
+const getfulluserData = (user) => ({
+  type: types.GET_FULL_USER_DATA,
+  payload: user,
+})
 
 export const loadUsers = () => {
   return function (dispatch) {
@@ -89,6 +93,22 @@ export const deleteUser = (id) => {
         .then((resp) => {
           console.log("resp", resp);
           dispatch(getUser(resp.data)); 
+          
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  };
+
+  export const getFullUserData = (id) => {
+    return function (dispatch) {
+      axios
+        .get(`${API}/user/${id}`)
+        .then((resp) => {
+          console.log("resp", resp);
+          dispatch(getfulluserData(resp.data)); 
           
           
         })

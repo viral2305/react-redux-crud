@@ -5,14 +5,41 @@
       "email": "viral@gmail.com",
       "contact": "9328889307",
       "address": "spain",
-      "id": 2
+      "id": 2,
+      "age": "21",
+      "number": "9328889307",
+      "birth_date": "2022-03-26"
     },
     {
       "name": "sahil",
       "email": "sahil@gmial.com",
       "contact": "9048283",
       "address": "spain",
-      "id": 3
+      "id": 3,
+      "age": "20",
+      "number": "84065987",
+      "birth_date": "2025-09-23"
+    },
+    {
+      "name": "Hiren",
+      "email": "hiren@gmail.com",
+      "contact": "9328889307",
+      "address": "spain",
+      "age": "22",
+      "number": "9328889307",
+      "birth_date": "2022-04-02",
+      "id": 4
+    },
+    {
+      "name": "jk",
+      "email": "jk@gmail.com",
+      "contact": "23480384",
+      "address": "spain",
+      "age": "21",
+      "number": "32154878",
+      "birth_date": "2022-04-01",
+      "gender": "female",
+      "id": 5
     }
   ]
 }
