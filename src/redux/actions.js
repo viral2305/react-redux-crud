@@ -3,9 +3,9 @@ import axios from "axios";
 
 import { API } from "../Utills/apiUrl";
 
-const getUsers = (users) => ({
+const getUsers = (users1) => ({
   type: types.GET_USERS,
-  payload: users,
+  payload: users1,
 });
 const userDeleted = () => ({
     type: types.DELETE_USER,
@@ -21,12 +21,13 @@ const getUser = (user) => ({
     type: types.GET_SINGLE_USER,
     payload: user,
 })
-const getfulluserData = (user) => ({
+const getfulluserData = (user1) => ({
   type: types.GET_FULL_USER_DATA,
-  payload: user,
+  payload: user1,
 })
 
 export const loadUsers = () => {
+  // console.log("loadUser")
   return function (dispatch) {
     axios
       .get(`${API}/user`)
@@ -107,7 +108,7 @@ export const deleteUser = (id) => {
       axios
         .get(`${API}/user/${id}`)
         .then((resp) => {
-          console.log("resp", resp);
+          console.log("getFullUserData", resp);
           dispatch(getfulluserData(resp.data)); 
           
           

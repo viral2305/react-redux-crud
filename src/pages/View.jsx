@@ -63,21 +63,15 @@ const useStyles = makeStyles({
 const View = () => {
   const classes = useStyles();
   let dispatch = useDispatch();
-  const [state, setState] = useState({});
   const { user } = useSelector((state) => state.data);
-  //   console.log(user);
+  console.log("user",user)
   let { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getFullUserData(id));
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      setState({ ...user });
-    }
-  }, [user]);
+  }, [ id ]);
+  
 
   return (
     <div>
@@ -107,6 +101,7 @@ const View = () => {
               <StyledTableCell align="center">Mobile No.</StyledTableCell>
               <StyledTableCell align="center">Birth-Date</StyledTableCell>
               <StyledTableCell align="center">Gender</StyledTableCell>
+              <StyledTableCell align="center">Language</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -121,6 +116,7 @@ const View = () => {
               <StyledTableCell align="center">{user.number}</StyledTableCell>
               <StyledTableCell align="center">{user.birth_date}</StyledTableCell>
               <StyledTableCell align="center">{user.gender}</StyledTableCell>
+              <StyledTableCell align="center">{user.language}</StyledTableCell>
             </StyledTableRow>
           </TableBody>
         </Table>

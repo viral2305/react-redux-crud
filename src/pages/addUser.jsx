@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 const AddUser = () => {
   const classes = useStyles();
   // const classess = useStyless();
-  const [state, setState] = useState({
+  const [user, setUser] = useState({
     name: "",
     email: "",
     contact: "",
@@ -49,22 +49,67 @@ const AddUser = () => {
     number: "",
     birth_date: "",
     gender: "",
+    language: [],
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { name, email, contact, address, age, number, birth_date, gender } = state;
+  const { name, email, contact, address, age, number, birth_date, gender } = user;
   const handleInputChange = (e) => {
-    let { name, value } = e.target;
-    setState({ ...state, [name]: value });
+    let { name, value,checked } = e.target;
+    if (name === "language") {
+      console.log("language",value);
+      if (checked === true) {
+
+        user.language.push(value);
+        console.log(user.language)
+        // setUser({...user});
+        
+        
+      }
+      else if (checked === false) {
+        let index = user.language.indexOf(value);
+        user.language.splice(index,1);
+        console.log(user.language)
+        // setUser({...user});
+      }
+      setUser({...user});
+
+    } else{
+      setUser({ ...user, [name]: value });
+    }
+    // setUser({ ...user, [name]: value });
   };
+
+  const handleInputChangeCheckbox = (e) => {
+    let {name, value,checked} = e.target;
+    console.log(e);
+    
+    // if (name === "language") {
+    //   console.log("language",value);
+    //   if (checked === true) {
+
+    //     user.language.push(value);
+    //     // setUser({...user});
+        
+        
+    //   }
+    //   else if (checked === false) {
+    //     let index = user.language.indexOf(value);
+    //     user.language.splice(index,1);
+    //     // setUser({...user});
+    //   }
+    //   setUser({...user});
+    // } 
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !address || !email || !contact) {
       setError("please input all input field");
     } else {
-      dispatch(addUser(state));
+      dispatch(addUser(user));
       navigate("/");
     }
   };
@@ -174,20 +219,21 @@ const AddUser = () => {
         <FormLabel component="legend">Choose Your Faviroute Language</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox onChange={handleInputChange} name="gilad" />}
-            label="Gilad Gray"
+            control={<Checkbox onChange={handleInputChange} value="Python" name="language" />}
+            label="Python"
           />
           <FormControlLabel
-            control={<Checkbox onChange={handleInputChange} name="jason" />}
-            label="Jason Killian"
+            control={<Checkbox onChange={handleInputChange} value="JavaScript" name="language" />}
+            label="JavaScript"
           />
           <FormControlLabel
-            control={<Checkbox onChange={handleInputChange} name="antoine" />}
-            label="Antoine Llorca"
+            control={<Checkbox onChange={handleInputChange} value="Html-Css" name="language" />}
+            label="Html-Css"
           />
         </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
+       
       </FormControl>
+      <br />
       {/* <FormControl required error={error} component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Pick two</FormLabel>
         <FormGroup>

@@ -10,6 +10,11 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import FormGroup from '@material-ui/core/FormGroup';
+
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,15 +40,17 @@ const EditUser = () => {
     number: "",
     birth_date: "",
     gender: "",
+    language:[],
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { name, email, contact, address, age, number, birth_date, gender } = state;
+  const { name, email, contact, address, age, number, birth_date, gender,language } = state;
 
   useEffect(() => {
     dispatch(getSingleUser(id));
   }, []);
+
   useEffect(() => {
     if (user) {
       setState({ ...user });
@@ -53,6 +60,28 @@ const EditUser = () => {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
+  const handleInputChangeCheckbox = (e) => {
+    let {name, value,checked} = e.target;
+    console.log(e);
+    
+    if (name === "language") {
+      console.log("language",state,value);
+      if (checked === true) {
+
+        state.language.push(value);
+        console.log(state.language);
+        // setUser({...user});
+        
+      }
+      else if (checked === false) {
+        let index = state.language.indexOf(value);
+        state.language.splice(index,1);
+        console.log(state.language);
+        // setUser({...user});
+      }
+      setState({...state});
+    } 
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -165,6 +194,25 @@ const EditUser = () => {
           </RadioGroup>
         </FormControl>
         <br />
+        <FormControl component="fieldset" className={classes.formControl}>
+        <FormLabel component="legend">Choose Your Faviroute Language</FormLabel>
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox onChange={handleInputChangeCheckbox} checked={language && language.includes("Python")}  value="Python" name="language" />}
+            label="Python"
+          />
+          <FormControlLabel
+            control={<Checkbox onChange={handleInputChangeCheckbox} checked={language && language.includes("JavaScript")} value="JavaScript" name="language" />}
+            label="JavaScript"
+          />
+          <FormControlLabel
+            control={<Checkbox onChange={handleInputChangeCheckbox} checked={language && language.includes("Html-Css")} value="Html-Css" name="language" />}
+            label="Html-Css"
+          />
+        </FormGroup>
+       
+      </FormControl>
+      <br />
 
         <Button
           style={{ width: "100px" }}
