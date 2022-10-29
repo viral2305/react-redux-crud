@@ -24,23 +24,10 @@
       "birth_date": "2022-03-19",
       "gender": "female",
       "language": [
-        "Html-Css"
-      ],
-      "id": 8
-    },
-    {
-      "name": "viral",
-      "email": "viral@gmail.com",
-      "contact": "3424234",
-      "address": "dafa",
-      "age": "34",
-      "number": "242354234234",
-      "birth_date": "2022-03-25",
-      "gender": "female",
-      "language": [
+        "Html-Css",
         "JavaScript"
       ],
-      "id": 9
+      "id": 8
     },
     {
       "name": "viral",
@@ -56,6 +43,21 @@
         "JavaScript"
       ],
       "id": 10
+    },
+    {
+      "name": "VIRAL",
+      "email": "VIRALSANGANI192033@GMAIL.COM",
+      "contact": "4234234",
+      "address": "SURAT",
+      "age": "21",
+      "number": "324324234234234",
+      "birth_date": "2001-05-23",
+      "gender": "male",
+      "language": [
+        "Python",
+        "Html-Css"
+      ],
+      "id": 11
     }
   ]
 }
